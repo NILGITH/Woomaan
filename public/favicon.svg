@@ -1,0 +1,62 @@
+
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F1C40F;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F4D03F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4AC0D;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="brownGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="url(#goldGradient)" stroke="#B8860B" stroke-width="0.5"/>
+  
+  <!-- Elegant woman silhouette -->
+  <g transform="translate(20.8, 11.2)">
+    <!-- Hat/Headwrap -->
+    <path d="M-1.3 -1.6 Q0 -2.4 1.3 -1.6 Q1.6 -1.3 1.3 -0.8 Q0 -0.5 -1.3 -0.8 Q-1.6 -1.3 -1.3 -1.6" fill="#8B4513" opacity="0.9"/>
+    
+    <!-- Face -->
+    <ellipse cx="0" cy="0" rx="1" ry="1.3" fill="#D2691E"/>
+    
+    <!-- Neck -->
+    <rect x="-0.3" y="1.3" width="0.6" height="0.8" fill="#D2691E"/>
+    
+    <!-- Elegant dress silhouette -->
+    <path d="M0 2.1 Q-1.4 2.4 -2.1 4 Q-2.4 5.6 -2.2 7.7 Q-2.1 9.6 -1.6 11.2 Q-1.3 12.5 0 13.3 Q1.3 12.5 1.6 11.2 Q2.1 9.6 2.2 7.7 Q2.4 5.6 2.1 4 Q1.4 2.4 0 2.1" fill="#8B4513" opacity="0.8"/>
+    
+    <!-- Dress elegant details -->
+    <path d="M-1 4.8 Q0 4.5 1 4.8 Q0.6 5.3 0 5.4 Q-0.6 5.3 -1 4.8" fill="#F4D03F" opacity="0.8"/>
+    <path d="M-0.8 6.9 Q0 6.4 0.8 6.9 Q0.5 7.2 0 7.4 Q-0.5 7.2 -0.8 6.9" fill="#F4D03F" opacity="0.8"/>
+    <path d="M-0.6 8.8 Q0 8.5 0.6 8.8 Q0.3 9.3 0 9.4 Q-0.3 9.3 -0.6 8.8" fill="#F4D03F" opacity="0.8"/>
+    
+    <!-- Arms -->
+    <ellipse cx="-1.4" cy="4" rx="0.3" ry="1.3" fill="#D2691E" transform="rotate(-25 -1.4 4)"/>
+    <ellipse cx="1.4" cy="4" rx="0.3" ry="1.3" fill="#D2691E" transform="rotate(25 1.4 4)"/>
+    
+    <!-- Lower dress flowing -->
+    <path d="M-1.6 11.2 Q-2.1 12 -1.8 13.3 Q-1.3 14.1 0 14.4 Q1.3 14.1 1.8 13.3 Q2.1 12 1.6 11.2 Q1.3 11.7 0 12 Q-1.3 11.7 -1.6 11.2" fill="#A0522D" opacity="0.8"/>
+  </g>
+  
+  <!-- WOOMAAN Text -->
+  <text x="16" y="24.8" text-anchor="middle" fill="url(#brownGradient)" font-family="serif" font-size="2.6" font-weight="bold" letter-spacing="0.3">WOOMAAN</text>
+  
+  <!-- BY YOLANDA DIVA -->
+  <text x="16" y="27.2" text-anchor="middle" fill="#8B4513" font-family="serif" font-size="1" font-weight="normal" letter-spacing="0.2">BY YOLANDA DIVA</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="4.8" cy="6.4" r="0.24" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="27.2" cy="7.2" r="0.24" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="5.6" cy="25.6" r="0.24" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="26.4" cy="24.8" r="0.24" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="8" cy="4.8" r="0.16" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="24" cy="5.6" r="0.16" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="6.4" cy="27.2" r="0.16" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="25.6" cy="27.2" r="0.16" fill="#F4D03F" opacity="0.6"/>
+</svg>

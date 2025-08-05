@@ -1,0 +1,62 @@
+
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F1C40F;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F4D03F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4AC0D;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="brownGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#goldGradient)" stroke="#B8860B" stroke-width="2"/>
+  
+  <!-- Elegant woman silhouette -->
+  <g transform="translate(130, 70)">
+    <!-- Hat/Headwrap -->
+    <path d="M-8 -10 Q0 -15 8 -10 Q10 -8 8 -5 Q0 -3 -8 -5 Q-10 -8 -8 -10" fill="#8B4513" opacity="0.9"/>
+    
+    <!-- Face -->
+    <ellipse cx="0" cy="0" rx="6" ry="8" fill="#D2691E"/>
+    
+    <!-- Neck -->
+    <rect x="-2" y="8" width="4" height="5" fill="#D2691E"/>
+    
+    <!-- Elegant dress silhouette -->
+    <path d="M0 13 Q-9 15 -13 25 Q-15 35 -14 48 Q-13 60 -10 70 Q-8 78 0 83 Q8 78 10 70 Q13 60 14 48 Q15 35 13 25 Q9 15 0 13" fill="#8B4513" opacity="0.8"/>
+    
+    <!-- Dress elegant details -->
+    <path d="M-6 30 Q0 28 6 30 Q4 33 0 34 Q-4 33 -6 30" fill="#F4D03F" opacity="0.8"/>
+    <path d="M-5 43 Q0 40 5 43 Q3 45 0 46 Q-3 45 -5 43" fill="#F4D03F" opacity="0.8"/>
+    <path d="M-4 55 Q0 53 4 55 Q2 58 0 59 Q-2 58 -4 55" fill="#F4D03F" opacity="0.8"/>
+    
+    <!-- Arms -->
+    <ellipse cx="-9" cy="25" rx="2" ry="8" fill="#D2691E" transform="rotate(-25 -9 25)"/>
+    <ellipse cx="9" cy="25" rx="2" ry="8" fill="#D2691E" transform="rotate(25 9 25)"/>
+    
+    <!-- Lower dress flowing -->
+    <path d="M-10 70 Q-13 75 -11 83 Q-8 88 0 90 Q8 88 11 83 Q13 75 10 70 Q8 73 0 75 Q-8 73 -10 70" fill="#A0522D" opacity="0.8"/>
+  </g>
+  
+  <!-- WOOMAAN Text -->
+  <text x="100" y="155" text-anchor="middle" fill="url(#brownGradient)" font-family="serif" font-size="16" font-weight="bold" letter-spacing="2">WOOMAAN</text>
+  
+  <!-- BY YOLANDA DIVA -->
+  <text x="100" y="170" text-anchor="middle" fill="#8B4513" font-family="serif" font-size="6" font-weight="normal" letter-spacing="1">BY YOLANDA DIVA</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="30" cy="40" r="1.5" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="170" cy="45" r="1.5" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="35" cy="160" r="1.5" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="165" cy="155" r="1.5" fill="#F4D03F" opacity="0.8"/>
+  <circle cx="50" cy="30" r="1" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="150" cy="35" r="1" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="40" cy="170" r="1" fill="#F4D03F" opacity="0.6"/>
+  <circle cx="160" cy="170" r="1" fill="#F4D03F" opacity="0.6"/>
+</svg>
