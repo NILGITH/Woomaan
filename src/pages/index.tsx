@@ -22,10 +22,12 @@ import {
   Youtube,
   Play,
   X,
-  Clock
+  Clock,
+  Menu
 } from "lucide-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
 
 const testimonials = [
   {
@@ -91,33 +93,64 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-20 h-20 mt-8">
+              <Link href="/">
+              <div className="w-40 h-40 mt-2">
                 <Image
-                  src="/images/logo_woomaan.svg"
+                  src="/images/woomaanlogo.png"
                   alt="WOOMAAN by Yolanda Diva Logo"
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="object-contain"
                 />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-black tracking-wider">WOOMAAN</h1>
-                <p className="text-xs woomaan-text-gradient font-medium tracking-wide">BY YOLANDA DIVA</p>
-              </div>
+              </Link>  
             </div>
             
+            {/* Menu desktop */}
             <div className="hidden lg:flex items-center space-x-8">
               <Link href="#collections" className="text-gray-700 hover:text-black transition-colors">Collections</Link>
               <Link href="/catalogue" className="text-gray-700 hover:text-black transition-colors">Catalogue</Link>
               <Link href="#about" className="text-gray-700 hover:text-black transition-colors">À Propos</Link>
               <Link href="#contact" className="text-gray-700 hover:text-black transition-colors">Contact</Link>
             </div>
-
-            <div className="flex items-center space-x-4">
+            {/* Menu mobile hamburger */}
+            <div className="flex items-center space-x-4 lg:hidden">
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-amber-800">
+                    <Menu className="w-7 h-7" />
+                  </Button>
+                </DrawerTrigger>
+                <DrawerContent className="pb-8">
+                  <div className="flex flex-col items-center space-y-6 mt-6">
+                    <Link href="#collections" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Collections</Link>
+                    <Link href="/catalogue" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Catalogue</Link>
+                    <Link href="#about" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">À Propos</Link>
+                    <Link href="#contact" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Contact</Link>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => router.push("/boutique")}
+                      className="border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white w-full"
+                    >
+                      <ShoppingBag className="w-4 h-4 mr-2" />
+                      Boutique
+                    </Button>
+                    <Button 
+                      onClick={() => router.push("/dashboard")}
+                      className="woomaan-bg-gradient hover:opacity-90 text-white font-medium w-full"
+                    >
+                      Espace Pro
+                    </Button>
+                  </div>
+                </DrawerContent>
+              </Drawer>
+            </div>
+            {/* Boutons desktop */}
+            <div className="hidden lg:flex items-center space-x-4">
               <Button 
                 variant="outline" 
                 onClick={() => router.push("/boutique")}
-                className="hidden sm:flex border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white"
+                className="border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white"
               >
                 <ShoppingBag className="w-4 h-4 mr-2" />
                 Boutique

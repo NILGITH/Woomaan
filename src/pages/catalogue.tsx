@@ -19,19 +19,19 @@ export default function CataloguePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-20 h-20 mt-8">
+              <Link href="/">
+              <div className="w-40 h-40 mt-2">
                 <Image
-                  src="/images/logo_woomaan.svg"
+                  src="/images/woomaanlogo.png"
                   alt="WOOMAAN by Yolanda Diva Logo"
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="object-contain"
                 />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-black tracking-wider">WOOMAAN</h1>
-                <p className="text-xs woomaan-text-gradient font-medium tracking-wide">BY YOLANDA DIVA</p>
-              </div>
+              </Link>
+             
+           
             </div>
             
             <div className="hidden lg:flex items-center space-x-8">
