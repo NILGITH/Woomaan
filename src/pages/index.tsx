@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { 
   ChevronRight, 
   Star, 
@@ -18,7 +19,10 @@ import {
   MapPin,
   Instagram,
   Facebook,
-  Youtube
+  Youtube,
+  Play,
+  X,
+  Clock
 } from "lucide-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -71,6 +75,7 @@ const collections = [
 export default function HomePage() {
   const router = useRouter();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -103,6 +108,7 @@ export default function HomePage() {
             
             <div className="hidden lg:flex items-center space-x-8">
               <Link href="#collections" className="text-gray-700 hover:text-black transition-colors">Collections</Link>
+              <Link href="/catalogue" className="text-gray-700 hover:text-black transition-colors">Catalogue</Link>
               <Link href="#about" className="text-gray-700 hover:text-black transition-colors">À Propos</Link>
               <Link href="#contact" className="text-gray-700 hover:text-black transition-colors">Contact</Link>
             </div>
@@ -324,73 +330,196 @@ export default function HomePage() {
         </div>
       </section>
 
+             {/* Video Section */}
+       <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="text-center mb-12">
+             <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-4">
+               <Youtube className="w-4 h-4 mr-2" />
+               Découvrez Nos Collections
+             </Badge>
+             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+               Nos Collections Sources
+             </h2>
+             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+               Plongez dans l'univers WOOMAAN et découvrez nos créations exclusives en action
+             </p>
+           </div>
+           
+           <div className="max-w-4xl mx-auto">
+             <Card className="overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300">
+               <div className="relative">
+                 {/* Thumbnail de la vidéo */}
+                 <div className="relative h-96 overflow-hidden">
+                                       <video
+                      className="w-full h-full object-cover"
+                      poster="/images/complet2.jpg"
+                      muted
+                      loop
+                      preload="auto"
+                      playsInline
+                    >
+                      <source src="/video/videowoomaan.mp4" type="video/mp4" />
+                    </video>
+                   <div className="absolute inset-0 bg-black/30"></div>
+                   <div className="absolute inset-0 flex items-center justify-center">
+                     <div className="text-center">
+                       <div className="w-24 h-24 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
+                            onClick={() => setIsVideoModalOpen(true)}>
+                         <Play className="w-12 h-12 text-amber-600 ml-1" fill="currentColor" />
+                       </div>
+                       <h3 className="text-2xl font-bold text-white mb-2">Catalogue WOOMAAN</h3>
+                       <p className="text-white/90">Cliquez pour regarder</p>
+                     </div>
+                   </div>
+                 </div>
+                 
+                                   {/* Informations de la vidéo */}
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                                             <div>
+                         <h3 className="text-xl font-bold text-black mb-2">L'Art de la Haute Couture</h3>
+                         <p className="text-gray-600">Plongez dans l'univers WOOMAAN et découvrez nos créations exclusives</p>
+                       </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </CardContent>
+               </div>
+             </Card>
+           </div>
+         </div>
+       </section>
+
+       {/* Video Modal */}
+       <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+         <DialogContent className="max-w-4xl w-full p-0 bg-black">
+           <DialogHeader className="p-6 bg-black text-white">
+             <div className="flex items-center justify-between">
+               <DialogTitle className="text-xl font-bold">Nos Collections Sources</DialogTitle>
+               <Button
+                 variant="ghost"
+                 size="icon"
+                 onClick={() => setIsVideoModalOpen(false)}
+                 className="text-white hover:bg-white/10"
+               >
+                 <X className="w-5 h-5" />
+               </Button>
+             </div>
+           </DialogHeader>
+                                               <div className="relative">
+                                                             <video
+                   controls
+                   className="w-full max-h-[80vh] object-contain"
+                   autoPlay
+                   preload="auto"
+                   playsInline
+                   style={{ imageRendering: 'auto' }}
+                 >
+                  <source src="/video/videowoomaan.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+             </div>
+         </DialogContent>
+       </Dialog>
+
       {/* Testimonials Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-6">
-            <Heart className="w-4 h-4 mr-2" />
-            Témoignages
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-16">
-            Ce Que Disent Nos Clientes
-          </h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-4">
+              <Heart className="w-4 h-4 mr-2" />
+              Témoignages
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Ce Que Disent Nos Clientes
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Découvrez les expériences uniques de nos clientes satisfaites
+            </p>
+          </div>
           
-          <div className="relative">
-            <Card className="p-8 shadow-xl">
-              <div className="flex justify-center mb-6">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 text-yellow-500 fill-current" />
-                ))}
-              </div>
-              
-              <blockquote className="text-xl text-gray-700 mb-8 italic">
-                "{testimonials[currentTestimonial].content}"
-              </blockquote>
-              
-              <div className="flex items-center justify-center">
-                <Image
-                  src={testimonials[currentTestimonial].image}
-                  alt={testimonials[currentTestimonial].name}
-                  width={60}
-                  height={60}
-                  className="rounded-full mr-4"
-                />
-                <div>
-                  <div className="font-semibold text-black">{testimonials[currentTestimonial].name}</div>
-                  <div className="text-gray-600">{testimonials[currentTestimonial].role}</div>
-                </div>
-              </div>
-            </Card>
-            
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial ? 'bg-yellow-500' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="relative overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                <div className="absolute top-0 left-0 w-full h-1 woomaan-bg-gradient"></div>
+                <CardContent className="p-8">
+                  <div className="flex justify-center mb-6">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    ))}
+                  </div>
+                  
+                  <blockquote className="text-lg text-gray-700 mb-6 italic leading-relaxed">
+                    "{testimonial.content}"
+                  </blockquote>
+                  
+                  <div className="flex items-center justify-center pt-4 border-t border-gray-100">
+                    <div className="relative">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={50}
+                        height={50}
+                        className="rounded-full ring-2 ring-amber-200"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <div className="font-semibold text-black">{testimonial.name}</div>
+                      <div className="text-sm text-gray-500">{testimonial.role}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg">
+              <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-gray-700">Plus de 500 clientes satisfaites</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-black to-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/espace.jpg"
+            alt="Espace WOOMAAN - Atelier de création"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            {/* <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-4">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Découvrez Notre Univers
+            </Badge> */}
+          </div>
+          
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Prête à Révéler Votre Élégance ?
           </h2>
-          <p className="text-xl mb-8 text-gray-300">
+          <p className="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
             Découvrez nos créations exclusives et laissez-vous séduire par l'art de la haute couture africaine
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg"
               onClick={() => router.push("/boutique")}
-              className="woomaan-bg-gradient hover:opacity-90 text-white font-semibold px-8 py-4"
+              className="woomaan-bg-gradient hover:opacity-90 text-white font-semibold px-8 py-4 shadow-xl"
             >
               Explorer la Boutique
               <ShoppingBag className="ml-2 w-5 h-5" />
@@ -408,84 +537,80 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-6">
-                <MapPin className="w-4 h-4 mr-2" />
-                Nous Contacter
-              </Badge>
-              <h2 className="text-4xl font-bold text-black mb-6">
-                Visitez Notre Atelier
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Venez découvrir l'univers WOOMAAN dans notre magnifique boutique-atelier située au cœur d'Abidjan. Notre équipe vous accueille pour une expérience personnalisée.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-black mb-1">Adresse</h3>
-                    <p className="text-gray-600">Cocody, Riviera Palmeraie<br />Abidjan, Côte d'Ivoire</p>
-                  </div>
+      <section id="contact" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="woomaan-bg-gradient text-white font-semibold px-4 py-2 mb-4">
+              <MapPin className="w-4 h-4 mr-2" />
+              Nous Contacter
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Visitez Notre Atelier
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Venez découvrir l'univers WOOMAAN dans notre magnifique boutique-atelier
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Informations de contact */}
+            <div className="space-y-8">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-black mb-1">Téléphone</h3>
-                    <p className="text-gray-600">
-                    +229 01 94 94 80 80</p>
-                    <p className="text-gray-600">+225 07 47 06 15</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-black mb-1">Email</h3>
-                    <p className="text-gray-600">
-                    woomaan.diva@gmail.com</p>
-                
-                  </div>
-               
+                <div>
+                  <h3 className="font-semibold text-black mb-2">Adresse</h3>
+                  <p className="text-gray-600">Cocody, Riviera Palmeraie<br />Abidjan, Côte d'Ivoire</p>
                 </div>
               </div>
               
-              <div className="mt-8">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-black mb-2">Téléphone</h3>
+                  <p className="text-gray-600">+229 01 94 94 80 80<br />+225 07 47 06 15</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 woomaan-bg-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-black mb-2">Email</h3>
+                  <p className="text-gray-600">woomaan.diva@gmail.com</p>
+                </div>
+              </div>
+              
+              <div className="pt-6">
                 <h3 className="font-semibold text-black mb-4">Suivez-nous</h3>
                 <div className="flex space-x-4">
                   <Link href="https://www.instagram.com/woomaanofficial?igsh=cDFsOHN0NXBzdGI2" target="__blank">
-                  <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
-                    <Instagram className="w-5 h-5" />
-                  </Button>
+                    <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
+                      <Instagram className="w-5 h-5" />
+                    </Button>
                   </Link>
                   <Link href="https://www.facebook.com/share/1FMRXfJ4Wb/" target="__blank">
-                  <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
-                    <Facebook className="w-5 h-5" />
-                  </Button>
+                    <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
+                      <Facebook className="w-5 h-5" />
+                    </Button>
                   </Link>
-                 <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I&fbclid=PAQ0xDSwL-qElleHRuA2FlbQIxMAABp_peGWCYAgHG6sinV9n5eRs_JwU1TYZsDSeQerHKXJb_Bz70eDISlUzgNvXJ_aem_Tzkkg2mc_ZQZ6QAPUeygyA" target="__blank">
-                 <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
-                    <Youtube className="w-5 h-5" />
-                  </Button>
-                 </Link>
-                
+                  <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I&fbclid=PAQ0xDSwL-qElleHRuA2FlbQIxMAABp_peGWCYAgHG6sinV9n5eRs_JwU1TYZsDSeQerHKXJb_Bz70eDISlUzgNvXJ_aem_Tzkkg2mc_ZQZ6QAPUeygyA" target="__blank">
+                    <Button variant="outline" size="icon" className="hover:woomaan-bg-gradient hover:text-white border-amber-800 text-amber-800">
+                      <Youtube className="w-5 h-5" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
             
-            <div className="bg-gray-50 p-8 rounded-lg border-l-4 border-amber-600">
+            {/* Horaires et conseil */}
+            <div className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-2xl font-bold text-black mb-6">Horaires d'Ouverture</h3>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-8">
                 <div className="flex justify-between">
                   <span className="font-medium">Lundi - Vendredi</span>
                   <span className="text-gray-600">9h00 - 18h00</span>
@@ -494,17 +619,20 @@ export default function HomePage() {
                   <span className="font-medium">Samedi</span>
                   <span className="text-gray-600">9h00 - 16h00</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Dimanche</span>
-                  <span className="text-gray-600">Sur rendez-vous</span>
-                </div>
               </div>
               
-              <div className="mt-8 p-4 bg-white rounded-lg border-l-4 border-yellow-500">
+              <div className="p-4 bg-white rounded-lg border-l-4 border-amber-600">
                 <h4 className="font-semibold text-black mb-2">Conseil Personnalisé</h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm mb-4">
                   Prenez rendez-vous pour une consultation privée et découvrez les créations qui vous correspondent parfaitement.
                 </p>
+                <Button 
+                  className="woomaan-bg-gradient hover:opacity-90 text-white"
+                  onClick={() => router.push("/")}
+                >
+                  Prendre Rendez-vous
+                  <Phone className="ml-2 w-4 h-4" />
+                </Button>
               </div>
             </div>
           </div>
@@ -512,60 +640,102 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-12">
+      <footer className="bg-gradient-to-br from-gray-900 to-black text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-3 mb-6">
-              <div className="w-12 h-12">
-                <Image
-                  src="/woomaan-logo.svg"
-                  alt="WOOMAAN by Yolanda Diva Logo"
-                  width={48}
-                  height={48}
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold tracking-wider">WOOMAAN</h3>
-                <p className="text-sm woomaan-text-gradient font-medium tracking-wide">BY YOLANDA DIVA</p>
-              </div>
-            </div>
-            <p className="text-gray-400 mb-6">
-              Révélez votre élégance africaine avec nos créations haute couture
-            </p>
-            {/* <div className="flex justify-center space-x-6 mb-8">
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <Instagram className="w-5 h-5" />
-              </Button>
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <Facebook className="w-5 h-5" />
-              </Button>
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <Youtube className="w-5 h-5" />
-              </Button>
-            </div> */}
-            <div className="flex justify-center space-x-6 mb-8">
-                  <Link href="https://www.instagram.com/woomaanofficial?igsh=cDFsOHN0NXBzdGI2" target="__blank">
-                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                    <Instagram className="w-5 h-5" />
-                  </Button>
-                  </Link>
-                  <Link href="https://www.facebook.com/share/1FMRXfJ4Wb/" target="__blank">
-                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                    <Facebook className="w-5 h-5" />
-                  </Button>
-                  </Link>
-                 <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I&fbclid=PAQ0xDSwL-qElleHRuA2FlbQIxMAABp_peGWCYAgHG6sinV9n5eRs_JwU1TYZsDSeQerHKXJb_Bz70eDISlUzgNvXJ_aem_Tzkkg2mc_ZQZ6QAPUeygyA" target="__blank">
-                 <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                    <Youtube className="w-5 h-5" />
-                  </Button>
-                 </Link>
-                
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            {/* Logo et description */}
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-16 h-16">
+                  <Image
+                    src="/woomaan-logo.svg"
+                    alt="WOOMAAN by Yolanda Diva Logo"
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
                 </div>
-            <div className="border-t border-gray-700 pt-8">
+                <div>
+                  <h3 className="text-3xl font-bold tracking-wider">WOOMAAN</h3>
+                  <p className="text-sm woomaan-text-gradient font-medium tracking-wide">BY YOLANDA DIVA</p>
+                </div>
+              </div>
+              <p className="text-gray-300 leading-relaxed max-w-md">
+                Révélez votre élégance africaine avec nos créations haute couture. Chaque pièce raconte une histoire unique, célébrant la beauté et la sophistication de la femme africaine moderne.
+              </p>
+            </div>
+            
+            {/* Liens rapides */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Navigation</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="#collections" className="text-gray-300 hover:text-white transition-colors">
+                    Collections
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/catalogue" className="text-gray-300 hover:text-white transition-colors">
+                    Catalogue
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#about" className="text-gray-300 hover:text-white transition-colors">
+                    À Propos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#contact" className="text-gray-300 hover:text-white transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Contact rapide */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4 text-amber-500" />
+                  <span className="text-gray-300">+225 07 47 06 15</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Mail className="w-4 h-4 text-amber-500" />
+                  <span className="text-gray-300">woomaan.diva@gmail.com</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-4 h-4 text-amber-500" />
+                  <span className="text-gray-300">Cocody, Abidjan</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Réseaux sociaux et copyright */}
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-gray-400 text-sm">
                 © 2024 WOOMAAN by Yolanda Diva. Tous droits réservés.
               </p>
+              
+              <div className="flex space-x-4">
+                <Link href="https://www.instagram.com/woomaanofficial?igsh=cDFsOHN0NXBzdGI2" target="__blank">
+                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+                    <Instagram className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link href="https://www.facebook.com/share/1FMRXfJ4Wb/" target="__blank">
+                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+                    <Facebook className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I&fbclid=PAQ0xDSwL-qElleHRuA2FlbQIxMAABp_peGWCYAgHG6sinV9n5eRs_JwU1TYZsDSeQerHKXJb_Bz70eDISlUzgNvXJ_aem_Tzkkg2mc_ZQZ6QAPUeygyA" target="__blank">
+                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+                    <Youtube className="w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
