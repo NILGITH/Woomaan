@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>WOOMAAN by Yolanda Diva</title>
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="/images/logo.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <AuthProvider>
