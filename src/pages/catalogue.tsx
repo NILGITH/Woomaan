@@ -4,7 +4,10 @@ import {
   ShoppingBag,
   Instagram,
   Facebook,
-  Youtube
+  Youtube,
+  Phone,
+  Mail,
+  MapPin
 } from "lucide-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -38,6 +41,7 @@ export default function CataloguePage() {
               <Link href="/#collections" className="text-gray-700 hover:text-black transition-colors">Collections</Link>
               <Link href="/catalogue" className="text-amber-800 font-semibold">Catalogue</Link>
               <Link href="/#about" className="text-gray-700 hover:text-black transition-colors">À Propos</Link>
+              <Link href="/galeries" className="text-gray-700 hover:text-black transition-colors">Galeries</Link>
               <Link href="/#contact" className="text-gray-700 hover:text-black transition-colors">Contact</Link>
             </div>
 
@@ -156,52 +160,106 @@ export default function CataloguePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-3 mb-6">
-              <div className="w-12 h-12">
-                <Image
-                  src="/woomaan-logo.svg"
-                  alt="WOOMAAN by Yolanda Diva Logo"
-                  width={48}
-                  height={48}
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold tracking-wider">WOOMAAN</h3>
-                <p className="text-sm woomaan-text-gradient font-medium tracking-wide">BY YOLANDA DIVA</p>
-              </div>
-            </div>
-            <p className="text-gray-400 mb-6">
-              Révélez votre élégance africaine avec nos créations haute couture
-            </p>
-            <div className="flex justify-center space-x-6 mb-8">
-              <Link href="https://www.instagram.com/woomaanofficial?igsh=cDFsOHN0NXBzdGI2" target="__blank">
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <Instagram className="w-5 h-5" />
-                </Button>
-              </Link>
-              <Link href="https://www.facebook.com/share/1FMRXfJ4Wb/" target="__blank">
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <Facebook className="w-5 h-5" />
-                </Button>
-              </Link>
-              <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I&fbclid=PAQ0xDSwL-qElleHRuA2FlbQIxMAABp_peGWCYAgHG6sinV9n5eRs_JwU1TYZsDSeQerHKXJb_Bz70eDISlUzgNvXJ_aem_Tzkkg2mc_ZQZ6QAPUeygyA" target="__blank">
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <Youtube className="w-5 h-5" />
-                </Button>
-              </Link>
-            </div>
-            <div className="border-t border-gray-700 pt-8">
-              <p className="text-gray-400 text-sm">
-                © 2024 WOOMAAN by Yolanda Diva. Tous droits réservés.
-              </p>
-            </div>
-          </div>
+      <footer className="bg-gradient-to-br from-gray-900 to-black text-white py-12">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Grille principale */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      
+      {/* Logo + description */}
+      <div className="flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="w-48 h-40 mb-6">
+          <Image
+            src="/images/woomaanlogo.png"
+            alt="WOOMAAN by Yolanda Diva Logo"
+            width={400}
+            height={400}
+            className="object-contain"
+          />
         </div>
-      </footer>
+        <p className="text-gray-300 leading-relaxed max-w-sm">
+          Révélez votre élégance africaine avec nos créations haute couture. 
+          Chaque pièce raconte une histoire unique, célébrant la beauté et la sophistication 
+          de la femme africaine moderne.
+        </p>
+      </div>
+      
+      {/* Navigation */}
+      <div className="flex flex-col items-center md:items-start text-center md:text-left">
+        <h4 className="text-lg font-semibold mb-4 mt-16">Navigation</h4>
+        <ul className="space-y-3">
+          <li>
+            <Link href="#collections" className="text-gray-300 hover:text-white transition-colors">
+              Collections
+            </Link>
+          </li>
+          <li>
+            <Link href="/catalogue" className="text-gray-300 hover:text-white transition-colors">
+              Catalogue
+            </Link>
+          </li>
+          <li>
+            <Link href="#about" className="text-gray-300 hover:text-white transition-colors">
+              À Propos
+            </Link>
+          </li>
+          <li>
+            <Link href="#contact" className="text-gray-300 hover:text-white transition-colors">
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </div>
+      
+      {/* Contact */}
+      <div className="flex flex-col items-center md:items-start text-center md:text-left">
+        <h4 className="text-lg font-semibold mb-4 mt-16">Contact</h4>
+        <ul className="space-y-3">
+          <li className="flex items-center justify-center md:justify-start space-x-2">
+            <Phone className="w-4 h-4 text-amber-500" />
+            <span className="text-gray-300">+225 07 47 06 15</span>
+          </li>
+          <li className="flex items-center justify-center md:justify-start space-x-2">
+            <Mail className="w-4 h-4 text-amber-500" />
+            <span className="text-gray-300">woomaan.diva@gmail.com</span>
+          </li>
+          <li className="flex items-center justify-center md:justify-start space-x-2">
+            <MapPin className="w-4 h-4 text-amber-500" />
+            <span className="text-gray-300">Cocody, Abidjan</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    {/* Bas du footer */}
+    <div className="border-t border-gray-700 pt-8">
+      <div className="flex flex-col items-center space-y-4">
+        {/* Réseaux sociaux */}
+        <div className="flex space-x-4">
+          <Link href="https://www.instagram.com/woomaanofficial?igsh=cDFsOHN0NXBzdGI2" target="__blank">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+              <Instagram className="w-5 h-5" />
+            </Button>
+          </Link>
+          <Link href="https://www.facebook.com/share/1FMRXfJ4Wb/" target="__blank">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+              <Facebook className="w-5 h-5" />
+            </Button>
+          </Link>
+          <Link href="https://m.youtube.com/watch?v=LHHXOujZT2I" target="__blank">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-white/10">
+              <Youtube className="w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+        
+        {/* Copyright */}
+        <p className="text-gray-400 text-sm text-center">
+          © 2024 WOOMAAN by Yolanda Diva. Tous droits réservés.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   );
 } 

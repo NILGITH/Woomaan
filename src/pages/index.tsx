@@ -55,19 +55,19 @@ const testimonials = [
 
 const collections = [
   {
-    name: "Collection Élégance",
+    name: "Collection Entrepide",
     description: "Sophistication et raffinement pour la femme moderne",
     image: "/images/complet1.jpg",
     pieces: 12
   },
   {
-    name: "Collection Business",
+    name: "Collection Entrepide",
     description: "Tenues professionnelles alliant style et confiance",
     image: "/images/complet2.jpg",
     pieces: 8
   },
   {
-    name: "Collection Soirée",
+    name: "Collection Flame",
     description: "Créations exclusives pour vos moments d'exception",
     image: "/images/complet3.jpg",
     pieces: 6
@@ -111,6 +111,7 @@ export default function HomePage() {
               <Link href="#collections" className="text-gray-700 hover:text-black transition-colors">Collections</Link>
               <Link href="/catalogue" className="text-gray-700 hover:text-black transition-colors">Catalogue</Link>
               <Link href="#about" className="text-gray-700 hover:text-black transition-colors">À Propos</Link>
+              <Link href="/galeries" className="text-gray-700 hover:text-black transition-colors">Galeries</Link>
               <Link href="#contact" className="text-gray-700 hover:text-black transition-colors">Contact</Link>
             </div>
             {/* Menu mobile hamburger */}
@@ -126,6 +127,7 @@ export default function HomePage() {
                     <Link href="#collections" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Collections</Link>
                     <Link href="/catalogue" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Catalogue</Link>
                     <Link href="#about" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">À Propos</Link>
+                    <Link href="/galeries" className="text-gray-700 hover:text-black transition-colors">Galeries</Link>
                     <Link href="#contact" className="text-lg font-medium text-gray-800 hover:text-amber-800 transition-colors">Contact</Link>
                     <Button 
                       variant="outline" 
@@ -414,11 +416,7 @@ export default function HomePage() {
                          <h3 className="text-xl font-bold text-black mb-2">L'Art de la Haute Couture</h3>
                          <p className="text-gray-600">Plongez dans l'univers WOOMAAN et découvrez nos créations exclusives</p>
                        </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                      </div>
+                    
                     </div>
                   </CardContent>
                </div>

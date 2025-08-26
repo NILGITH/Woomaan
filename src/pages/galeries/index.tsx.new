@@ -1,0 +1,258 @@
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import DashboardLayout from "@/components/layout/DashboardLayout"
+
+// ----- Types et données -----
+interface Photo {
+  id: string
+  title: string
+  date: string
+  description: string
+  src: string
+}
+
+// Conférences
+const conferencesPhotos: Photo[] = [
+  {
+    id: "conf1",
+    title: "3 Études d'évaluation d'impact",
+    date: "22 février 2024",
+    description: "Évaluation des mesures fiscales.",
+    src: "/images/restitutionbudget1.jpg"
+  },
+  {
+    id: "conf2",
+    title: "Japan Corner JICA-Toda Corporation",
+    date: "22 février 2024",
+    description: "Conférence internationale CAPEC 2025",
+    src: "/images/japanconferencecapec.jpg"
+  },
+]
+
+// Séminaires
+const seminairesPhotos: Photo[] = [
+  {
+    id: "sem1",
+    title: "Forum EPA en partenariat avec ACED",
+    date: "6 au 7 Novembre 2024",
+    description: "",
+    src: "/images/photo/converted_img_c.png"
+  },
+  {
+    id: "sem2",
+    title: "Lancement projet SPIA",
+    date: "15 mai 2025",
+    description: "",
+    src: "/images/photo/IMG_9039con.jpg"
+  },
+]
+
+// Formations
+const formationsPhotos: Photo[] = [
+  {
+    id: "form1",
+    title: "Remise des trophées CAPEC",
+    date: "09 octobre 2024",
+    description: "",
+    src: "/images/28.jpg"
+  },
+  {
+    id: "form2",
+    title: "Visite Sophia University",
+    date: "",
+    description: "",
+    src: "/images/tokyo.jpeg"
+  },
+]
+
+// Équipes
+const equipesPhotos: Photo[] = [
+  {
+    id: "eq1",
+    title: "Directeur CAPEC Prof Alban Ahoure",
+    date: "",
+    description: "",
+    src: "/images/dgcapec.jpg"
+  },
+  {
+    id: "eq2",
+    title: "Visite d'Esther Duflo",
+    date: "",
+    description: "",
+    src: "/images/estherubo.jpg"
+  },
+]
+
+// Panels
+const panelPhotos: Photo[] = [
+  {
+    id: "panel1",
+    title: "Panel de haut niveau",
+    date: "",
+    description: "",
+    src: "/images/photo/panel de haut niveau.png"
+  },
+  {
+    id: "panel2",
+    title: "Panel de haut niveau",
+    date: "",
+    description: "",
+    src: "/images/photo/converted_img_g.png"
+  },
+]
+
+const allPhotos: Photo[] = [
+  ...conferencesPhotos,
+  ...seminairesPhotos,
+  ...formationsPhotos,
+  ...equipesPhotos,
+  ...panelPhotos,
+]
+
+// ----- Composant GalleryGrid -----
+function GalleryGrid({ photos, openLightbox }: { photos: Photo[]; openLightbox: (image: Photo, index: number) => void }) {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+      {photos.map((photo, index) => (
+        <div
+          key={photo.id}
+          className="overflow-hidden rounded-xl shadow-md cursor-pointer group"
+          onClick={() => openLightbox(photo, index)}
+        >
+          <div className="relative aspect-square">
+            <Image
+              src={photo.src || "/placeholder.svg"}
+              alt={photo.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <div className="p-3 text-white">
+                <h3 className="font-medium text-sm">{photo.title}</h3>
+                <p className="text-xs text-white/80">{photo.date}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ----- Composant de contenu de la galerie -----
+function GaleriesContent() {
+  const [selectedImage, setSelectedImage] = useState<Photo | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const openLightbox = (image: Photo, index: number) => {
+    setSelectedImage(image)
+    setCurrentIndex(index)
+  }
+
+  const closeLightbox = () => setSelectedImage(null)
+
+  const goToPrevious = () => {
+    const newIndex = (currentIndex - 1 + allPhotos.length) % allPhotos.length
+    setSelectedImage(allPhotos[newIndex])
+    setCurrentIndex(newIndex)
+  }
+
+  const goToNext = () => {
+    const newIndex = (currentIndex + 1) % allPhotos.length
+    setSelectedImage(allPhotos[newIndex])
+    setCurrentIndex(newIndex)
+  }
+
+  return (
+    <div className="container px-4 py-12 md:px-6 md:py-20 flex-grow">
+      {/* Header */}
+      <header className="text-center space-y-4">
+        <h1 className="text-4xl md:text-5xl font-bold">Photothèque</h1>
+        <p className="text-muted-foreground md:text-lg max-w-2xl mx-auto">
+          Découvrez les moments forts des activités de la CAPEC à travers notre galerie de photos.
+        </p>
+      </header>
+
+      {/* Tabs */}
+      <Tabs defaultValue="all" className="mt-12">
+        <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2">
+          <TabsTrigger value="all">Toutes</TabsTrigger>
+          <TabsTrigger value="conferences">Conférences</TabsTrigger>
+          <TabsTrigger value="seminaires">Séminaires</TabsTrigger>
+          <TabsTrigger value="formations">Formations</TabsTrigger>
+          <TabsTrigger value="equipes">Équipes</TabsTrigger>
+          <TabsTrigger value="panel">Panels</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="all" className="mt-8">
+          <GalleryGrid photos={allPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+        <TabsContent value="conferences" className="mt-8">
+          <GalleryGrid photos={conferencesPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+        <TabsContent value="seminaires" className="mt-8">
+          <GalleryGrid photos={seminairesPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+        <TabsContent value="formations" className="mt-8">
+          <GalleryGrid photos={formationsPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+        <TabsContent value="equipes" className="mt-8">
+          <GalleryGrid photos={equipesPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+        <TabsContent value="panel" className="mt-8">
+          <GalleryGrid photos={panelPhotos} openLightbox={openLightbox} />
+        </TabsContent>
+      </Tabs>
+
+      {/* Lightbox */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+          <button
+            className="absolute top-4 right-4 text-white p-2 rounded-full bg-black/50 hover:bg-black/70"
+            onClick={closeLightbox}
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <button
+            className="absolute left-4 text-white p-2 rounded-full bg-black/50 hover:bg-black/70"
+            onClick={goToPrevious}
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <div className="relative w-full max-w-4xl h-[80vh]">
+            <Image
+              src={selectedImage.src || "/placeholder.svg"}
+              alt={selectedImage.title}
+              fill
+              className="object-contain"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-4 text-white">
+              <h3 className="font-bold">{selectedImage.title}</h3>
+              <p className="text-sm text-white/80">{selectedImage.date}</p>
+              <p className="mt-2">{selectedImage.description}</p>
+            </div>
+          </div>
+          <button
+            className="absolute right-4 text-white p-2 rounded-full bg-black/50 hover:bg-black/70"
+            onClick={goToNext}
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Composant de page principal avec le layout
+export default function GaleriesPage() {
+  return (
+    <DashboardLayout>
+      <GaleriesContent />
+    </DashboardLayout>
+  )
+}
